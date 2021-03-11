@@ -23,11 +23,20 @@
                     </ol>
                 </article>
             </section>
-
-
-
-
-
+            <section class="main-section" id="Getting_Started">
+                <header><h2>Getting Started</h2></header>
+                <article>
+                    <p>Two methods are provided for accessing the API.</p>
+                    <h3>External API</h3>
+                    <p>The External API should be used when the system making the call is hosted remotely from the WHMCS 
+                        installation.</p>
+                    <p>This API accepts POST requests to the API endpoint located at:</p>
+                    <code>https://www.yourdomain.com/path/to/whmcs/includes/api.php</code>
+                    <h3>Internal API</h3>
+                    <p>The Internal API should be used when making API calls from within the WHMCS system.</p>
+                    <p>For instance from modules, hooks, or other custom code local to the WHMCS installation.</p>
+                </article>
+            </section>
             <section class="main-section" id="API_authentication">
                 <header><h2>API Authentication</h2></header>
                 <article>
@@ -93,11 +102,110 @@ $postfields = array(
                         <code>?action=xxxx&username=xxx&password=xxx&accesskey=secret_key_passphrase_goes_here</code>
                 </article>
             </section>
+            <section class="main-section" id="Response_Types">
+                <header><h2>Response Types</h2></header>
+                <article>
+                    <p>The API supports 3 response types:</p>
+                    <ul>
+                        <li>JSON <strong>(Recommended)</strong></li>
+                        <li>XML</li>    
+                        <li>NVP <i>(Deprecated)</i></li>
+                    </ul>
+                    <p>You can define the response type you wish to receive by including responsetype=xxxx in your request 
+                        parameters.</p>
+                </article>
+            </section>
+
+            <section class="main-section" id="Sample_Code">
+                <header><h2>Sample Code</h2></header>
+                <article>
+                    <p>The following demonstrates how to connect to the WHMCS API from a PHP script using CURL.</p>
+                    <code>
+                        // API Connection Details
+$whmcsUrl = "https://www.yourdomain.com/path/to/whmcs/";
+
+// For WHMCS 7.2 and later, we recommend using an API Authentication Credential pair.
+// Learn more at http://docs.whmcs.com/API_Authentication_Credentials
+// Prior to WHMCS 7.2, an admin username and md5 hash of the admin password may be used.
+$username = "your_api_credential_identifier";
+$password = "your_api_credential_secret";
+
+// Set post values
+$postfields = array(
+    'username' => $username,
+    'password' => $password,
+    'action' => 'GetClients',
+    'responsetype' => 'json',
+);
+
+// Call the API
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $whmcsUrl . 'includes/api.php');
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postfields));
+$response = curl_exec($ch);
+if (curl_error($ch)) {
+    die('Unable to connect: ' . curl_errno($ch) . ' - ' . curl_error($ch));
+}
+curl_close($ch);
+
+// Decode response
+$jsonData = json_decode($response, true);
+
+// Dump array structure for inspection
+var_dump($jsonData);
+                    </code>
+                </article>
+            </section>
 
 
-
-
-
+            <section class="main-section" id="Internal_API">
+                <header><h2>Internal API</h2></header>
+                <article>
+                    <p>The Internal API should be used when making API calls from within the WHMCS system.</p>
+                    <p>Common uses for this include from modules, hooks, or other custom code local to the WHMCS installation.</p>
+                    <h3>Usage Example</h3>
+                    <code>/**
+                        * WHMCS Sample Local API Call
+                        *
+                        * @package    WHMCS
+                        * @author     WHMCS Limited <development@whmcs.com>
+                        * @copyright  Copyright (c) WHMCS Limited 2005-2016
+                        * @license    http://www.whmcs.com/license/ WHMCS Eula
+                        * @version    $Id$
+                        * @link       http://www.whmcs.com/
+                        */
+                       
+                       // Define parameters
+                       $command = 'SendEmail';
+                       $values = array(
+                           'messagename' => 'Test Template',
+                           'id' => '1',
+                       );
+                       $adminuser = 'AdminUsername';
+                       
+                       // Call the localAPI function
+                       $results = localAPI($command, $values, $adminuser);
+                       if ($results['result'] == 'success') {
+                           echo 'Message sent successfully!';
+                       } else {
+                           echo "An Error Occurred: " . $results['message'];
+                       }
+                    </code>
+                </article>
+            </section>
+            <section class="main-section" id="Reference">
+                <header><h2>Reference</h2></header>
+                <article>
+                    <p>All the content in this page was taken from <a href="https://docs.whmcs.com/System_Requirements">
+                        WHMCS System Requirements</a> and <a href="https://developers.whmcs.com/api/getting-started/">WHMCS 
+                        Developer Documentation</a>.</p>
+                </article>
+            </section>
         </main>
     </body>
 </html>
