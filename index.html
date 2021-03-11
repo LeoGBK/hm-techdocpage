@@ -2,7 +2,32 @@
 <html>
     <head></head>
     <body>
+        <nav>
+            <header><h1>WHMCS Documentation</h1></header>
+        </nav>
         <main id="main-doc">
+            <section class="main-section" id="System_Requirements">
+                <header><h2>System Requirements</h2></header>
+                <article>
+                    <p>Most current web servers* with PHP & MySQL installed will be capable of running WHMCS.</p>
+                    <p>The following list shows the minimum and recommended system requirements for running WHMCS 8.0 and later.</p>
+                    <ol>
+                        <li>Requirement: PHP Version - Minimum:	7.2	| Recommended: Latest 7.3 or 7.4 Release</li>
+                        <li>Requirement: PHP Memory Limit - Minimum:	64MB	| Recommended: 128MB</li>
+                        <li>Requirement: PHP Database Extension - Minimum:	PDO	| Recommended: PDO</li>
+                        <li>Requirement: PHP Extensions - Minimum:	Curl with SSL / GD2 Image Library / JSON Support / XML	| 
+                            Recommended: Iconv / MBString / GMP / OpenSSL / BC Math / Intl</li>
+                        <li>Requirement: MySQL Version - Minimum:	5.2.0	| Recommended: Latest 5.7</li>
+                        <li>Requirement: Ioncube Loaders - Minimum:	10.2.0 or later	| Recommended: The latest 10.x Ioncube for 
+                            your PHP version</li>
+                    </ol>
+                </article>
+            </section>
+
+
+
+
+
             <section class="main-section" id="API_authentication">
                 <header><h2>API Authentication</h2></header>
                 <article>
@@ -46,6 +71,32 @@ $postfields = array(
                         </code>
                 </article>
             </section>
+            <section class="main-section" id="Access_Control">
+                <header><h2>Access Control</h2></header>
+                <article>
+                    <p>Access to the API by default is restricted by IP.</p>
+                    <p>For situations where IP access control is not feasible, an Access Key can also be configured.</p>
+                    <h3>Managing Allowed IPs</h3>
+                    <p>To configure the Allowed IPs, login to the WHMCS admin area and navigate to Setup > General Settings > 
+                        Security.</p>
+                    <p>There you can add and remove IPs, along with a note referencing.</p>
+                    <h3>Configuring An Access Key</h3>
+                    <p>Alternatively an access key can be configured to allow IP restrictions to be bypassed.</p>
+                    <p>TIt works by defining a secret key/passphrase in the WHMCS configuration.php file which is then passed 
+                        into all API calls. To configure it, add a line as follows to your configuration.php file in the root 
+                        WHMCS directory.</p>
+                        <code>$api_access_key = 'secret_key_passphrase_goes_here';</code>
+                        <p>An API Access Key can contain letters, numbers, and the following special characters only:</p>
+                        <code>! @ # $ % . ( ) * [ ] - _</code>
+                        <p>Following the introduction of an API Access Key, you can then include it in your API requests as 
+                            follows:</p>
+                        <code>?action=xxxx&username=xxx&password=xxx&accesskey=secret_key_passphrase_goes_here</code>
+                </article>
+            </section>
+
+
+
+
 
         </main>
     </body>
