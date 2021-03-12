@@ -6,10 +6,17 @@
     width: 260px;
     height: 100%;
     border-right: solid;
-    border-color: #16a085;
+    border-color: #0a6251;
 }
 
 .nav-link {
     padding: 10% 0% 10% 0%;
     list-style: none;
+  }
+  
+  .nav-link a {
+    font-size: 1.1vw;
+    link-style: none;
+    text-decoration: none;
+    color: #0a6251;
   }
