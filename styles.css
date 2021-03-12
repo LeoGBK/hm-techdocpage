@@ -1,44 +1,51 @@
 #navbar {
-      position: fixed;
-      min-width: 14%;
-      top: 0px;
-      left: 0px;
-      width: 15%;
-      height: 100%;
-      border-right: solid;
-      border-color: #0a6251;
-      background-color: #dff9fb;
-      
+  position: fixed;
+  min-width: 14%;
+  top: 0px;
+  left: 0px;
+  width: 15%;
+  height: 100%;
+  border-right: solid;
+  border-color: #0a6251;
+  background-color: #dff9fb;
 }
-  
+
 .nav-link {
-    padding: 10% 0% 10% 0%;
-    list-style: none;
+  padding: 10% 0% 10% 0%;
+  list-style: none;
 }
-  
+
 .nav-link a {
-    font-size: 20px;
-    link-style: none;
-    text-decoration: none;
-    color: #0a6251;
+  font-size: 20px;
+  link-style: none;
+  text-decoration: none;
+  color: #0a6251;
 }
-  
+
 h1 {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    text-align: center;
-    color: #30336b;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+  color: #30336b;
 }
 
 h2 {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: #0a6251;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #0a6251;
 }
 
 h3 {
-    font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
-  
+
 #main-doc {
-    margin-left: 17%;
-    margin-right: 5%;
-    }
+  margin-left: 17%;
+  margin-right: 5%;
+}
+
+.main-section {
+  padding: 5% 0% 5% 0%;
+}
+
+.main-section p {
+  padding: 0%;
+}
