@@ -1,28 +1,35 @@
 #navbar {
-    position: fixed;
-    min-width: 250px;
-    top: 0px;
-    left: 0px;
-    width: 260px;
-    height: 100%;
-    border-right: solid;
-    border-color: #0a6251;
+      position: fixed;
+      min-width: 14%;
+      top: 0px;
+      left: 0px;
+      width: 15%;
+      height: 100%;
+      border-right: solid;
+      border-color: #0a6251;
+      background-color: #dff9fb;
+      
 }
-
+  
 .nav-link {
     padding: 10% 0% 10% 0%;
     list-style: none;
-  }
+}
   
-  .nav-link a {
-    font-size: 1.1vw;
+.nav-link a {
+    font-size: 20px;
     link-style: none;
     text-decoration: none;
     color: #0a6251;
-  }
-
-  h1 {
+}
+  
+h1 {
     font-family: Verdana;
     text-align: center;
     color: #30336b;
-  }
+}
+  
+#main-doc {
+    margin-left: 17%;
+    margin-right: 5%;
+    }
