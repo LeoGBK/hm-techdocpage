@@ -24,9 +24,18 @@
 }
   
 h1 {
-    font-family: Verdana;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-align: center;
     color: #30336b;
+}
+
+h2 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #0a6251;
+}
+
+h3 {
+    font-family: Arial, Helvetica, sans-serif;
 }
   
 #main-doc {
