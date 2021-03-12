@@ -48,7 +48,9 @@
                     <p>The External API should be used when the system making the call is hosted remotely from the WHMCS 
                         installation.</p>
                     <p>This API accepts POST requests to the API endpoint located at:</p>
-                    <code>https://www.yourdomain.com/path/to/whmcs/includes/api.php</code>
+                    <div class="codigo">
+                        <code>https://www.yourdomain.com/path/to/whmcs/includes/api.php</code>
+                    </div>
                     <h3>Internal API</h3>
                     <p>The Internal API should be used when making API calls from within the WHMCS system.</p>
                     <p>For instance from modules, hooks, or other custom code local to the WHMCS installation.</p>
@@ -65,6 +67,7 @@
                     <h3>Authenticating With API Credentials</h3>
                     <p>API requests will be authenticated based on the request parameters identifier and secret as 
                         provisioned when Creating Admin API Authentication Credentials within the WHMCS Admin Area.</p>
+                    <div class="codigo">
                         <code>
                             $api_identifier = 'D4j1dKYE3g40VROOPCGyJ9zRwP0ADJIv';
 $api_secret = 'F1CKGXRIpylMfsrig3mwwdSdYUdLiFlo';
@@ -76,6 +79,7 @@ $postfields = array(
 'responsetype' => $response_type,
 );
                         </code>
+                    </div>
                     <p>For forwards compatibility with existing integrations, the identifier and secret may also be passed 
                         in the username and password fields respectively. A valid identifier and secret combination passed 
                         in this way will also result in successful authentication.</p>
@@ -85,6 +89,7 @@ $postfields = array(
                         but may be deprecated in a future version of WHMCS.</p>
                     <p>To authenticate with the admin login credentials, pass the admin username and the MD5 hashed value of the 
                         respective admin’s password.</p>
+                    <div class="codigo">
                         <code>$username = "your_admin_login_username";
                             $password = "your_admin_login_password";
                             
@@ -95,6 +100,7 @@ $postfields = array(
                                 'responsetype' => $response_type,
                             );
                         </code>
+                    </div>
                 </article>
             </section>
             <section class="main-section" id="Access_Control">
@@ -111,12 +117,18 @@ $postfields = array(
                     <p>TIt works by defining a secret key/passphrase in the WHMCS configuration.php file which is then passed 
                         into all API calls. To configure it, add a line as follows to your configuration.php file in the root 
                         WHMCS directory.</p>
-                        <code>$api_access_key = 'secret_key_passphrase_goes_here';</code>
+                        <div class="codigo">
+                            <code>$api_access_key = 'secret_key_passphrase_goes_here';</code>
+                        </div>
                         <p>An API Access Key can contain letters, numbers, and the following special characters only:</p>
-                        <code>! @ # $ % . ( ) * [ ] - _</code>
+                        <div class="codigo">
+                            <code>! @ # $ % . ( ) * [ ] - _</code>
+                        </div>
                         <p>Following the introduction of an API Access Key, you can then include it in your API requests as 
                             follows:</p>
-                        <code>?action=xxxx&username=xxx&password=xxx&accesskey=secret_key_passphrase_goes_here</code>
+                        <div class="codigo">
+                            <code>?action=xxxx&username=xxx&password=xxx&accesskey=secret_key_passphrase_goes_here</code>
+                        </div>
                 </article>
             </section>
             <section class="main-section" id="Response_Types">
@@ -137,45 +149,47 @@ $postfields = array(
                 <header><h2>Sample Code</h2></header>
                 <article>
                     <p>The following demonstrates how to connect to the WHMCS API from a PHP script using CURL.</p>
-                    <code>
-                        // API Connection Details
-$whmcsUrl = "https://www.yourdomain.com/path/to/whmcs/";
-
-// For WHMCS 7.2 and later, we recommend using an API Authentication Credential pair.
-// Learn more at http://docs.whmcs.com/API_Authentication_Credentials
-// Prior to WHMCS 7.2, an admin username and md5 hash of the admin password may be used.
-$username = "your_api_credential_identifier";
-$password = "your_api_credential_secret";
-
-// Set post values
-$postfields = array(
-    'username' => $username,
-    'password' => $password,
-    'action' => 'GetClients',
-    'responsetype' => 'json',
-);
-
-// Call the API
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $whmcsUrl . 'includes/api.php');
-curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
-curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
-curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postfields));
-$response = curl_exec($ch);
-if (curl_error($ch)) {
-    die('Unable to connect: ' . curl_errno($ch) . ' - ' . curl_error($ch));
-}
-curl_close($ch);
-
-// Decode response
-$jsonData = json_decode($response, true);
-
-// Dump array structure for inspection
-var_dump($jsonData);
-                    </code>
+                    <div class="codigo">
+                        <code>
+                            // API Connection Details
+    $whmcsUrl = "https://www.yourdomain.com/path/to/whmcs/";
+    
+    // For WHMCS 7.2 and later, we recommend using an API Authentication Credential pair.
+    // Learn more at http://docs.whmcs.com/API_Authentication_Credentials
+    // Prior to WHMCS 7.2, an admin username and md5 hash of the admin password may be used.
+    $username = "your_api_credential_identifier";
+    $password = "your_api_credential_secret";
+    
+    // Set post values
+    $postfields = array(
+        'username' => $username,
+        'password' => $password,
+        'action' => 'GetClients',
+        'responsetype' => 'json',
+    );
+    
+    // Call the API
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $whmcsUrl . 'includes/api.php');
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postfields));
+    $response = curl_exec($ch);
+    if (curl_error($ch)) {
+        die('Unable to connect: ' . curl_errno($ch) . ' - ' . curl_error($ch));
+    }
+    curl_close($ch);
+    
+    // Decode response
+    $jsonData = json_decode($response, true);
+    
+    // Dump array structure for inspection
+    var_dump($jsonData);
+                        </code>
+                    </div>
                 </article>
             </section>
 
@@ -186,33 +200,35 @@ var_dump($jsonData);
                     <p>The Internal API should be used when making API calls from within the WHMCS system.</p>
                     <p>Common uses for this include from modules, hooks, or other custom code local to the WHMCS installation.</p>
                     <h3>Usage Example</h3>
-                    <code>/**
-                        * WHMCS Sample Local API Call
-                        *
-                        * @package    WHMCS
-                        * @author     WHMCS Limited <development@whmcs.com>
-                        * @copyright  Copyright (c) WHMCS Limited 2005-2016
-                        * @license    http://www.whmcs.com/license/ WHMCS Eula
-                        * @version    $Id$
-                        * @link       http://www.whmcs.com/
-                        */
-                       
-                       // Define parameters
-                       $command = 'SendEmail';
-                       $values = array(
-                           'messagename' => 'Test Template',
-                           'id' => '1',
-                       );
-                       $adminuser = 'AdminUsername';
-                       
-                       // Call the localAPI function
-                       $results = localAPI($command, $values, $adminuser);
-                       if ($results['result'] == 'success') {
-                           echo 'Message sent successfully!';
-                       } else {
-                           echo "An Error Occurred: " . $results['message'];
-                       }
-                    </code>
+                    <div class="codigo">
+                        <code>/**
+                            * WHMCS Sample Local API Call
+                            *
+                            * @package    WHMCS
+                            * @author     WHMCS Limited <development@whmcs.com>
+                            * @copyright  Copyright (c) WHMCS Limited 2005-2016
+                            * @license    http://www.whmcs.com/license/ WHMCS Eula
+                            * @version    $Id$
+                            * @link       http://www.whmcs.com/
+                            */
+                           
+                           // Define parameters
+                           $command = 'SendEmail';
+                           $values = array(
+                               'messagename' => 'Test Template',
+                               'id' => '1',
+                           );
+                           $adminuser = 'AdminUsername';
+                           
+                           // Call the localAPI function
+                           $results = localAPI($command, $values, $adminuser);
+                           if ($results['result'] == 'success') {
+                               echo 'Message sent successfully!';
+                           } else {
+                               echo "An Error Occurred: " . $results['message'];
+                           }
+                        </code>
+                    </div>
                 </article>
             </section>
             <section class="main-section" id="Reference">

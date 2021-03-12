@@ -54,8 +54,14 @@ h3 {
 }
 
 .main-section li {
-    
-    line-height: 2em;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 20px;
-  }
+  line-height: 2em;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 20px;
+}
+
+.codigo {
+  background-color: black;
+  color: white;
+  padding: 1%;
+}
