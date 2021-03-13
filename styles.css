@@ -40,9 +40,14 @@ h3 {
   padding-top: 3%;
 }
 
-#main-doc {
+#main-doc, footer {
   margin-left: 17%;
   margin-right: 5%;
+}
+
+footer {
+  text-align: center;
+  font-style: italic;
 }
 
 .main-section {
